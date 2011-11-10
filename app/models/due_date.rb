@@ -21,7 +21,8 @@ class DueDate < ActiveRecord::Base
       new_due_date.save       
     }    
   end
-  
+
+// moved this method from assignment.rb as it is related to due dates.  
   def self.set_duedate (duedate,deadline, assign_id, max_round)
     submit_duedate=DueDate.new(duedate);
     submit_duedate.deadline_type_id = deadline;
@@ -48,6 +49,7 @@ class DueDate < ActiveRecord::Base
 
   end
 
+// moved this method from assignment.rb as it is related to due dates.
   def get_next_due_date(assignment)
     #puts "~~~~~~~~~~Enter get_next_due_date()\n"
     due_date = find_next_stage(assignment)
@@ -59,6 +61,7 @@ class DueDate < ActiveRecord::Base
 
   end
 
+// moved this method from assignment.rb as it is related to due dates.
   def self.find_next_stage(assignment)
     #puts "~~~~~~~~~~Enter find_next_stage()\n"
     due_dates = DueDate.find(:all,
@@ -87,6 +90,7 @@ class DueDate < ActiveRecord::Base
     end
   end
 
+// moved this method from assignment.rb as it is related to due dates.
   def self.find_current_stage(assignment,topic_id=nil)
     if assignment.staggered_deadline?
       due_dates = TopicDeadline.find(:all,

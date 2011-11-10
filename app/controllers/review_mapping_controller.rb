@@ -127,6 +127,9 @@ class ReviewMappingController < ApplicationController
     return nil
   end
 
+// before this called assignment, which indirectly called response_map
+// since this is more closely related to response maps
+// we refactored it by moving the function to response_map.rb
   def assign_reviewer_dynamically
     begin
       assignment = Assignment.find(params[:assignment_id])
@@ -149,6 +152,11 @@ class ReviewMappingController < ApplicationController
 
   end
 
+
+
+// before this called assignment, which indirectly called response_map
+// since this is more closely related to response maps
+// we refactored it by moving the function to response_map.rb
   def assign_metareviewer_dynamically
     begin
       assignment = Assignment.find(params[:assignment_id])

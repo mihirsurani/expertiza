@@ -36,6 +36,7 @@ class AssignmentTest < ActiveSupport::TestCase
     end
   end
 
+// testing due dates method
   def test_due_dates
     assignment = assignments(:assignment6)
     assert assignment.get_current_stage, "Complete"

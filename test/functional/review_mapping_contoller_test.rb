@@ -16,6 +16,7 @@ class ReviewMappingControllerTest < ActionController::TestCase
   fixtures :content_pages
   @settings = SystemSettings.find(:first)
 
+// set up for each test
   def setup
     @controller = ReviewMappingController.new
     @request    = ActionController::TestRequest.new
@@ -38,6 +39,7 @@ class ReviewMappingControllerTest < ActionController::TestCase
     assert true
   end
 
+// testing if reviewer can be assigned dynamically
   def test_assign_reviewer_dynamically
     assignmentid = assignments(:assignment1).id
     reviewerid = session[:user].id
@@ -45,6 +47,7 @@ class ReviewMappingControllerTest < ActionController::TestCase
     assert flash[:notice], "Reviewer was successfully assigned"
   end
 
+// testing if metareviewer can be assigned dynamically
   def test_assign_meta_reviewer_dynamically
     assignmentid = assignments(:assignment1).id
     metareviewerid = session[:user].id
@@ -52,6 +55,8 @@ class ReviewMappingControllerTest < ActionController::TestCase
     assert flash[:notice], "Metareviewer was successfully assigned"
   end
 
+// testing if user gets added, before assigning reviewer
+// then page is redirected to reviews list
   def test_add_user_to_assignment_redirected_to_review
     assignmentid = assignments(:assignment1).id
     userid = session[:user].id
@@ -60,6 +65,8 @@ class ReviewMappingControllerTest < ActionController::TestCase
     assert flash[:notice],"contributor added successfully to reviewer"
   end
 
+// testing if user gets added, before assigning metareviewer
+// then page is redirected to metareviews list
   def test_add_user_to_assignment_redirected_to_meta_review
     assignmentid = 39222559
     userid = session[:user].id
@@ -67,6 +74,7 @@ class ReviewMappingControllerTest < ActionController::TestCase
     assert flash[:notice],"contributor added successfully to meta reviewer"
   end
 
+// testing add_reviewer method
   def test_add_reviewer
     assignmentid = assignments(:assignment1).id
     userid = session[:user].id
@@ -75,6 +83,7 @@ class ReviewMappingControllerTest < ActionController::TestCase
     assert flash[:notice],"reviewer added successfully"
   end
 
+// testing add_metareviewer method
   def test_add_metareviewer
     assignmentid = 39222559
     userid = session[:user].id
